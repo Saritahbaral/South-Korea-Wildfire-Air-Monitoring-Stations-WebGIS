@@ -1,0 +1,216 @@
+{
+  "sources": [
+    {
+      "path": "04_KMA_Downwind_Analysis/Results_All_Spatial_Pairs/All_Events_Downwind_Station_Summary.csv",
+      "bytes": 213834,
+      "sha256": "9a187ddd02557fab6764b02b563e674cf2229cf9ed6aa0e1d3e69cc1bc4e2983",
+      "packagedPath": "assets/downloads/All_Events_Downwind_Station_Summary.csv"
+    },
+    {
+      "path": "04_KMA_Downwind_Analysis/Results_All_Spatial_Pairs/All_Events_Hourly_Station_Exposure.csv",
+      "bytes": 9019571,
+      "sha256": "558f1ff66347b42a5df490a8d8fa305116bbdaac26da4736de97d55d141407a5",
+      "packagedPath": "assets/downloads/All_Events_Hourly_Station_Exposure.csv"
+    },
+    {
+      "path": "04_KMA_Downwind_Analysis/Results_All_Spatial_Pairs/KMA_AWS_Event_Quality.csv",
+      "bytes": 3087,
+      "sha256": "aac4f86f7243d791ec6e77e258b938b843fde25b48cef1cf3a27bbe02c728b30",
+      "packagedPath": "assets/downloads/KMA_AWS_Event_Quality.csv"
+    },
+    {
+      "path": "04_KMA_Downwind_Analysis/Results_All_Spatial_Pairs/All_Events_Hourly_KMA_AWS_Wind.csv",
+      "bytes": 262123,
+      "sha256": "16a8cbf70b629e12e933a15c12673740ad4132c2b6752ad17ba2f943fa88c097",
+      "packagedPath": "assets/downloads/All_Events_Hourly_KMA_AWS_Wind.csv"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Best5_Selected_Stations.csv",
+      "bytes": 46092,
+      "sha256": "baa179eef70044498cbf066b27b5dd42324419fcf1f9d0d128b5efa80b9bceaf",
+      "packagedPath": "assets/downloads/Best5_Selected_Stations.csv"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Best5_Selection_Audit.csv",
+      "bytes": 180183,
+      "sha256": "6da4d4311de9a7562ef302953c006b336e506538b1c9f8bc0e000e5a2b0607fb",
+      "packagedPath": "assets/downloads/Best5_Selection_Audit.csv"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Table.csv",
+      "bytes": 69756,
+      "sha256": "ca214940a545d1446e112739bdf5619ea18f65f184407ba54695b49baba354e9",
+      "packagedPath": "assets/downloads/PM_Summary_Table.csv"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables.xlsx",
+      "bytes": 134184,
+      "sha256": "4c85129e3b693da9c48e964728c79050a9c658e4560eba06ce59e495a8df9a91",
+      "packagedPath": "assets/downloads/PM_Summary_Tables.xlsx"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Best5_All_Events_PM_Anomalies.pdf",
+      "bytes": 295719,
+      "sha256": "619a79d5a9d7eecac6e4ad90dc171339d3542342fca4462b319a48984e106e64",
+      "packagedPath": "assets/All_Wildfires_PM_Anomalies.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/All_Events_PM_Summary_Tables.pdf",
+      "bytes": 108538,
+      "sha256": "212a5bf17cb2ba6217d23bde7518e0cecbb606d4bc57851944519e9f2e039969",
+      "packagedPath": "assets/tables/All_Events_PM_Summary_Tables.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/All_Events_PM_Summary_Tables.xlsx",
+      "bytes": 30690,
+      "sha256": "d468073f188e9a5642d39f6497c3d9f4246b7cead901827627cce05585363fa7",
+      "packagedPath": "assets/tables/All_Events_PM_Summary_Tables.xlsx"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_01/Event_01_PM_Anomalies.png",
+      "bytes": 676793,
+      "sha256": "3573d91761d9d1cb8af4058f10da2763258bee2ba5c852d1059572c5f4f47a6f",
+      "packagedPath": "assets/Event_01_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_01_PM_Summary_Table.pdf",
+      "bytes": 38013,
+      "sha256": "2e3f27dd67f76d890430d3e3fdfd84bc2fa0c25c330d2989227811688bbed038",
+      "packagedPath": "assets/tables/Event_01_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_02/Event_02_PM_Anomalies.png",
+      "bytes": 836179,
+      "sha256": "86cfc610c80c60ecda692674cd5ef7fd7ae8224e05e42247a715e8ed7f33b79d",
+      "packagedPath": "assets/Event_02_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_02_PM_Summary_Table.pdf",
+      "bytes": 38147,
+      "sha256": "de4d32777d6a7586bb54a2475183a8ee8aae0e87099c0ba77bde15d034f68a9a",
+      "packagedPath": "assets/tables/Event_02_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_03/Event_03_PM_Anomalies.png",
+      "bytes": 796093,
+      "sha256": "2974ec9fd8517c19dc915dc372081087d1f6b3af97eb312427e1611102bd9a3c",
+      "packagedPath": "assets/Event_03_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_03_PM_Summary_Table.pdf",
+      "bytes": 40553,
+      "sha256": "2da240f43967c63635529745efe91f47ffc429b104600e44f1a6acb4bf07d8d9",
+      "packagedPath": "assets/tables/Event_03_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_04/Event_04_PM_Anomalies.png",
+      "bytes": 628939,
+      "sha256": "61603c9fcd4ddef21a06ad73c600b7ea3866312694a82f52b4b5650a3e2588f4",
+      "packagedPath": "assets/Event_04_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_04_PM_Summary_Table.pdf",
+      "bytes": 41867,
+      "sha256": "ec92f7273487d0be5b0628c8c65ef1cf5412655018e899cb8ebcff2f0e8bc588",
+      "packagedPath": "assets/tables/Event_04_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_05/Event_05_PM_Anomalies.png",
+      "bytes": 685877,
+      "sha256": "572393d583ca25e2da21dba6e7b43bc7b5e6ad4d1d2325bc2febf1c0ff5c6cad",
+      "packagedPath": "assets/Event_05_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_05_PM_Summary_Table.pdf",
+      "bytes": 39861,
+      "sha256": "bb1e740d1d3afb5df077c9be13501ac49c51e345f04e0f083f673ecdc6d85efc",
+      "packagedPath": "assets/tables/Event_05_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_06/Event_06_PM_Anomalies.png",
+      "bytes": 1053557,
+      "sha256": "a71fb6b9b8a1106321be30a28f08340bac323012f44cac3578e6a7ad750513e4",
+      "packagedPath": "assets/Event_06_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_06_PM_Summary_Table.pdf",
+      "bytes": 39145,
+      "sha256": "ecb110947532a5d0f53871f70476e9a55c8d0589aed3fd019b5308b3eec5a740",
+      "packagedPath": "assets/tables/Event_06_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_07/Event_07_PM_Anomalies.png",
+      "bytes": 1055020,
+      "sha256": "f169efb070913a3e788e07629c6001cbaa187086b27c17f18dae7a515f6c7a5a",
+      "packagedPath": "assets/Event_07_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_07_PM_Summary_Table.pdf",
+      "bytes": 40794,
+      "sha256": "a76ebc8961b519425dde01d5074818a1ee91687a68a704c05292fcafbcaac7ad",
+      "packagedPath": "assets/tables/Event_07_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_08/Event_08_PM_Anomalies.png",
+      "bytes": 745553,
+      "sha256": "1f842017d183fdf9a319214abe5adc5373102689f1ceb90ce2a386f83128d27b",
+      "packagedPath": "assets/Event_08_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_08_PM_Summary_Table.pdf",
+      "bytes": 40498,
+      "sha256": "06b7cc7faca5eb92673cc21bb1f797d7987f065f039cc11b4202a1c088d2fcbe",
+      "packagedPath": "assets/tables/Event_08_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_09/Event_09_PM_Anomalies.png",
+      "bytes": 872977,
+      "sha256": "e802b7ad37decbf2d11f981a6cd949f3ce8a346b031a4f35b8519bf438779b71",
+      "packagedPath": "assets/Event_09_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_09_PM_Summary_Table.pdf",
+      "bytes": 38636,
+      "sha256": "bd1ee85e83251e5fd961079b747862fce7cf102d809f6abfd3ce55a64f50cba0",
+      "packagedPath": "assets/tables/Event_09_PM_Summary_Table.pdf"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/Graphs/Event_10/Event_10_PM_Anomalies.png",
+      "bytes": 569026,
+      "sha256": "450abc055dd2bed4dfc2308ef16fc5d6f507bded15810005369dd885efff1fc9",
+      "packagedPath": "assets/Event_10_PM_Anomalies.png"
+    },
+    {
+      "path": "06_PM_Timeseries_Graphs/Results_Best5_Graphs_and_Summary_Tables/PM_Summary_Tables/Event_PDFs/Event_10_PM_Summary_Table.pdf",
+      "bytes": 39722,
+      "sha256": "5fc9e45f8408baec13620fa4bf637337aa187b8eab68aeda782a4770206b43ab",
+      "packagedPath": "assets/tables/Event_10_PM_Summary_Table.pdf"
+    }
+  ],
+  "retainedInventoryProvenance": [
+    {
+      "path": "Air_Quality_Data/Station_List.xlsx",
+      "bytes": 82424,
+      "sha256": "b48d8373c1091419c851bd13737692a04e8b3985074dd008124dde4783a47e54"
+    },
+    {
+      "path": "01_Wildfire_Geocoding/Official_Disclosure_2026-09-29.xlsx",
+      "bytes": 14985,
+      "sha256": "47df99e968ffed440effaa96bf6b0112a598b91b23acbbbcb4e821b0e1e1e84c"
+    },
+    {
+      "path": "01_Wildfire_Geocoding/Wildfire_Coordinate_Master_Official_2026-09-29.xlsx",
+      "bytes": 18636,
+      "sha256": "2ba0ed1702fb8cc0b93c2e260f6a1e50cb600d9a2d09d71bb77f86fe88ddc6bd"
+    }
+  ],
+  "counts": {
+    "events": 10,
+    "nationalStations": 688,
+    "uniqueStations": 192,
+    "candidateRelationships": 241,
+    "eligibleRelationships": 202,
+    "pmSelectedRelationships": 184,
+    "analyzedRelationships": 46
+  }
+}

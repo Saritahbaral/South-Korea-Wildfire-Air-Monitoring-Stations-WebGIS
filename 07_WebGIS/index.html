@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>South Korea · Wildfire & Air Quality WebGIS</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d2438'/%3E%3Cpath d='M17 4L7 21l9 8 10-8z' fill='%23ff8c42'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="vendor/leaflet.css"><link rel="stylesheet" href="vendor/MarkerCluster.css"><link rel="stylesheet" href="vendor/MarkerCluster.Default.css">
+<link rel="stylesheet" href="style.css">
+<script src="vendor/leaflet.js" defer></script><script src="vendor/leaflet.markercluster.js" defer></script><script src="table_cells.js" defer></script><script src="data.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-icon" aria-hidden="true">W</span><div><h1>Wildfire & Air Quality WebGIS</h1><p>South Korea · Research explorer</p></div></div><div class="top-actions"><span class="archive-tag">ARCHIVE · 2019–2025</span><button id="sourcesButton" class="outline">Data & limitations</button></div></header>
+<div class="workspace">
+<aside class="sidebar">
+ <div class="side-heading"><h2>Wildfire events</h2><span id="eventCount" class="count"></span></div>
+ <label for="eventSelect">Select an event</label><select id="eventSelect"></select>
+ <nav id="eventList" aria-label="Wildfire events"></nav>
+ <div class="side-note"><strong>One supplied dataset</strong><p>Historical observations and existing analysis results. All times in KST.</p></div>
+</aside>
+<main>
+ <section class="event-heading"><div><p id="eventEyebrow" class="eyebrow"></p><h2 id="eventName"></h2><p id="eventKo" class="secondary"></p></div><div class="area-stat"><span>Reported burned area</span><strong id="burnedArea"></strong></div></section>
+ <section class="event-facts" aria-label="Event facts"><div><span>Fire start · KST</span><strong id="fireStart"></strong></div><div><span>Fire end · KST</span><strong id="fireEnd"></strong></div><div><span>Final selected stations</span><strong id="analyzedCount"></strong></div><div><span>Wind coverage</span><strong id="windCoverage"></strong></div></section>
+ <div class="primary-grid">
+ <section class="card map-card">
+  <div class="card-head"><div><h3>Monitoring network</h3><p>Full station inventory · OpenStreetMap or Esri · KST event analysis</p></div><div class="map-controls"><button id="allFires">All fires</button><button id="fitEvent">Fit event</button><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button></div></div>
+  <div class="filters"><div><label for="stationLayer">Station layer</label><select id="stationLayer"><option value="national">All national stations</option><option value="exposure">Hourly alignment (spatial candidate)</option><option value="finalExposure">Final selected stations — hourly wind alignment</option><option value="analyzed">Final selected stations</option><option value="pm">PM analysis pool</option><option value="eligible">Eligible stations</option><option value="all">Spatial candidate</option></select></div><div class="search"><label for="stationSearch">Find a station by name or code</label><input id="stationSearch" type="search" placeholder="Station name or code" autocomplete="off"></div><div><label for="distanceFilter">Map display radius</label><select id="distanceFilter"><option value="100">100 km</option><option value="75">75 km</option><option value="50" selected>50 km</option><option value="40">40 km</option><option value="30">30 km</option><option value="25">25 km</option><option value="20">20 km</option><option value="10">10 km</option></select></div></div>
+  <div class="map-wrap"><div id="map" role="group" aria-label="Interactive map of ten wildfires and AirKorea stations"></div><span id="coordinates" class="coordinate-readout"></span></div>
+  <div class="map-key" id="standardKey"><span><i class="fire"></i>Reported ignition point</span><span><i class="station"></i>Final selected stations</span><span><i class="eligible"></i>Eligible station</span><span><i class="candidate"></i>Other station</span><span id="visibleCount"></span></div>
+  <div class="map-key" id="exposureKey" hidden><span><i class="fire"></i>Reported ignition point</span><span><i class="downwind"></i>Downwind</span><span><i class="upwind"></i>Upwind</span><span><i class="crosswind"></i>Crosswind</span><span><i class="missing"></i>Calm / missing</span><span>Hourly wind sector; no smoke measurement</span><span id="exposureCount"></span></div>
+ </section>
+ <aside class="card station-card"><div class="card-head"><h3>Station details</h3></div><div id="stationDetails"></div></aside>
+ </div>
+ <section class="card wind-card"><div class="wind-main"><div><h3>Hourly wind & station alignment</h3><p>Event-level vector mean; arrow points toward transport.</p></div><div id="windValue" class="wind-value"></div></div><div class="time-row"><button id="previousHour" aria-label="Previous wind observation">‹</button><label class="sr-only" for="windTime">Wind observation</label><input type="range" id="windTime" min="0" max="0" value="0"><button id="nextHour" aria-label="Next wind observation">›</button><output id="windTimestamp"></output></div><div id="windSources" class="secondary small"></div><p id="coordinateWarning" class="source-warning"></p></section>
+ <section class="card station-table-card"><div class="card-head"><h3>Stations assessed for this event</h3><p id="tableCaption"></p><button id="toggleCandidates" aria-expanded="false">Show all candidates</button></div><div class="table-scroll"><table><thead><tr><th>Station</th><th>Distance</th><th>Selection</th><th>Paired PM completeness</th><th>Downwind hours / noncalm %</th><th>Exposure at selected hour</th></tr></thead><tbody id="stationRows"></tbody></table></div></section>
+ <section class="card graph-card"><div class="card-head"><div><h3>Hourly PM anomalies</h3><p>Saved final selected figures; up to five stations per event</p></div><div class="graph-tools"><a id="downloadPdf" download>All-event PDF ↓</a></div></div><img id="graphImage" alt="" loading="lazy"><p id="graphError" class="source-warning" hidden>Graph image is unavailable. Keep the assets folder with index.html.</p></section>
+ <section class="card graph-card"><div class="card-head"><div><h3>PM summary tables</h3><p>Same final selected stations as the graph; station details span both pollutant rows.</p></div></div><div class="graph-tools" style="padding:16px;display:flex;flex-wrap:wrap;gap:16px"><a id="eventTablePdf" download>Event table PDF ↓</a><a href="assets/tables/All_Events_PM_Summary_Tables.pdf" download>All-event tables PDF ↓</a></div><div class="pm-readable-scroll"><table class="pm-readable-table" id="pmReadableTable"></table></div><p class="pm-readable-note">Scroll horizontally to see every column. Station details are merged across PM2.5 and PM10 rows. Concentrations and anomalies: µg/m³. Values are copied from the saved Excel tables.</p></section>
+ <footer>Historical research data · Values and classifications retain the supplied analysis definitions. <button id="footerSources">View source files</button></footer>
+</main></div>
+<dialog id="sourceDialog"><div class="dialog-head"><h2>Data & limitations</h2><button id="closeSources" aria-label="Close source details">Close</button></div><div id="sourceNotes"></div><h3>Source files</h3><p class="secondary">Exact paths within the uploaded folder. The manifest includes SHA-256 fingerprints.</p><ul id="sourceFiles"></ul></dialog>
+<noscript>This viewer needs JavaScript enabled to display the supplied research data.</noscript>
+</body></html>
