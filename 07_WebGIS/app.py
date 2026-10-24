@@ -106,7 +106,7 @@ def rows_csv(rows: list[dict], fields: list[tuple[str, str]]) -> bytes:
     writer = csv.writer(out)
     writer.writerow([label for _, label in fields])
     for row in rows:
-        writer.writerow([station_name(row) if key == "name" and label == "Station" else assessment_category(row) if key == "assessmentCategory" else selection_stage(row) if key == "selectionStage" else row.get(key, "") for key, label in fields])
+        writer.writerow([station_name(row) if key == "name" and label == "Station" else assessment_category(row) if key == "assessmentCategory" else row.get(key, "") for key, label in fields])
     return out.getvalue().encode("utf-8-sig")
 
 
@@ -129,22 +129,13 @@ def assessment_category(station: dict) -> str:
     return labels.get(category, category or "Not recorded")
 
 
-def selection_stage(station: dict) -> str:
-    labels = {
-        "NEAREST": "Two-nearest stage",
-        "DOWNWIND_PRIORITY": "Additional station ranked by downwind hours",
-    }
-    role = station.get("selectionRole") or ""
-    return labels.get(role, role or "Not in final selected stations")
-
-
 STATION_COLORS = {"도시대기": "#2878b5", "교외대기": "#2ca25f", "도로변대기": "#7b3294",
                   "국가배경": "#e6ab02", "국가배경농도": "#e6ab02", "항만": "#008c95", "산단대기": "#636363"}
 EXPOSURE_COLORS = {"DOWNWIND": "#d76724", "UPWIND": "#2878b5", "CROSSWIND": "#7b539e",
                    "CALM": "#8494a2", "MISSING": "#8494a2"}
 STATION_FIELDS = [("code", "Station code"), ("name", "Station"), ("name", "Korean station name"), ("distance", "Distance (km)"),
                   ("eligible", "Eligible stations"), ("pmSelected", "PM analysis pool"), ("analyzed", "Final selected stations"),
-                  ("availability", "PM availability"), ("assessmentCategory", "Assessment category"), ("selectionStage", "Selection stage"), ("downwindHours", "Downwind hours"),
+                  ("availability", "PM availability"), ("assessmentCategory", "Assessment category"), ("downwindHours", "Downwind hours"),
                   ("completeness", "Paired PM completeness (%)"), ("downwindPercent", "Downwind / noncalm (%)"),
                   ("baseline25", "Prefire PM2.5 (µg/m³)"), ("baseline10", "Prefire PM10 (µg/m³)"),
                   ("anomaly25", "Active PM2.5 anomaly (µg/m³)"), ("anomaly10", "Active PM10 anomaly (µg/m³)")]
@@ -221,7 +212,6 @@ def build_map(archive: dict, event: dict, stations: list[dict], national: list[d
                  f"Paired PM completeness: {fmt(station['completeness'])}%<br>"
                  f"Downwind hours: {fmt(station['downwindHours'],0)}<br>"
                  f"Assessment category: {safe(assessment_category(station))}<br>"
-                 f"Selection stage: {safe(selection_stage(station))}<br>"
                  f"Sector at selected hour: {safe(state)}<br>"
                  f"Active PM2.5 anomaly: {fmt(station['anomaly25'])} µg/m³<br>"
                  f"Active PM10 anomaly: {fmt(station['anomaly10'])} µg/m³")
@@ -340,7 +330,7 @@ st.subheader("Stations shown on the map")
 st.caption("The current event layer, distance filter and station search determine these rows.")
 clear_table([{ "Code": s["code"], "Station": station_name(s), "Distance (km)": s["distance"],
                 "PM complete (%)": s["completeness"], "Final selected stations": s["analyzed"], "PM availability": s["availability"], "PM analysis pool": s["pmSelected"], "Downwind hours": s["downwindHours"],
-                "Assessment category": assessment_category(s), "Selection stage": selection_stage(s),
+                "Assessment category": assessment_category(s),
                 "Selected-hour sector": s["exposure"].get(wind["time"], "MISSING") if wind else "MISSING"}
               for s in visible])
 
@@ -349,7 +339,7 @@ st.subheader(f"Event {selected:02d} final selected stations and PM results")
 analyzed = [s for s in event["stations"] if s["analyzed"]]
 clear_table([{"Station": station_name(s), "Code": s["code"], "Distance (km)": s["distance"],
                "PM complete (%)": s["completeness"], "Downwind / noncalm (%)": s["downwindPercent"],
-               "Assessment category": assessment_category(s), "Selection stage": selection_stage(s),
+               "Assessment category": assessment_category(s),
                "Prefire PM2.5": s["baseline25"], "Prefire PM10": s["baseline10"],
                "Active PM2.5 anomaly": s["anomaly25"], "Active PM10 anomaly": s["anomaly10"]}
               for s in analyzed])
@@ -373,10 +363,6 @@ if options:
     c4.metric("Selected-hour sector", s["exposure"].get(wind["time"], "MISSING") if wind else "MISSING")
     st.write(f"**PM availability:** {s['availability']} · **PM analysis pool:** {'Yes' if s['pmSelected'] else 'No'}")
     st.write(f"**Downwind hours:** {fmt(s['downwindHours'],0)} · **Assessment category:** {assessment_category(s)}")
-    st.write(f"**Selection stage:** {selection_stage(s)}")
-    st.caption("The selection stage records how the saved final subset is ranked. "
-               "Additional stations are ranked by downwind hours, which may be zero; "
-               "this stage does not itself establish downwind qualification.")
     st.write(f"**Baseline quality:** {s['baselineQuality']}")
     if not s['analyzed']:
         st.caption('Detailed PM baseline and anomaly values are bundled only for the final selected stations.')
