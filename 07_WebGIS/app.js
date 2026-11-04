@@ -36,8 +36,8 @@ const fires=L.layerGroup().addTo(map), points=L.layerGroup().addTo(map), windOve
 function fit(entities){const valid=entities.filter(hasPosition);if(valid.length)map.fitBounds(L.latLngBounds(valid.map(s=>[s.lat,s.lon])).pad(.18),{maxZoom:12,animate:false});}
 function fitAll(){fit([...D.events,...D.nationalStations]);}
 function fitEvent(){fit([event,...event.stations.filter(s=>s.analyzed&&hasPosition(s))]);}
-function showEvent(id){event=D.events.find(e=>e.id===id)||D.events[0];hour=0;selectedCode=null;tableExpanded=false;$('stationSearch').value='';$('eventSelect').value=event.id;render();fitEvent();}
-function chooseStation(code){selectedCode=code;renderStation();renderTable();renderMap();}
+function showEvent(id,focus=true){event=D.events.find(e=>e.id===id)||D.events[0];hour=0;selectedCode=null;tableExpanded=false;$('stationSearch').value='';$('eventSelect').value=event.id;render();if(focus)fitEvent();}
+function chooseStation(code){selectedCode=code;renderStation();renderTable();points.eachLayer(group=>group.eachLayer(marker=>{const active=marker.options.stationCode===code;marker.setStyle({radius:active?9:5.5,color:active?'#152f45':'white',weight:active?2.5:1.2});}));}
 function renderHeader(){
  $('eventDetailsTitle').textContent=`Event ${String(event.number).padStart(2,'0')} details`;
  $('eventCoordinates').textContent=`Ignition coordinates: ${num(event.lat,5)}, ${num(event.lon,5)}`;
@@ -65,7 +65,7 @@ function renderMap(){
  for(const e of D.events){if(!hasPosition(e))continue;const active=e.id===event.id;
   const icon=L.divIcon({className:'fire-map-icon',html:`<span class="${active?'current':''}">${e.number}</span>`,iconSize:[34,34],iconAnchor:[17,17]});
   const marker=L.marker([e.lat,e.lon],{icon,title:`Event ${e.number} · ${e.name}`,zIndexOffset:active?2000:1000}).addTo(fires);
-  marker.bindTooltip(`${e.number}`,{permanent:true,direction:e.number===2?'left':'right',className:'wildfire-number-label'});marker.bindPopup(`<b>Event ${e.number}: ${esc(e.name)}</b><br>${esc(e.nameKo)}<br>Start: ${esc(date(e.start))} KST<br>End: ${esc(date(e.end))} KST<br>Reported area: ${num(e.area,2)} ha`);marker.on('click',()=>{showEvent(e.id);fires.eachLayer(m=>{if(m.options.title===`Event ${e.number} · ${e.name}`)m.openPopup();});});
+  marker.bindTooltip(`${e.number}`,{permanent:true,direction:e.number===2?'left':'right',className:'wildfire-number-label'});marker.bindPopup(`<b>Event ${e.number}: ${esc(e.name)}</b><br>${esc(e.nameKo)}<br>Start: ${esc(date(e.start))} KST<br>End: ${esc(date(e.end))} KST<br>Reported area: ${num(e.area,2)} ha`,{autoPan:false});marker.on('click',()=>{showEvent(e.id,false);fires.eachLayer(m=>{if(m.options.title===`Event ${e.number} · ${e.name}`)m.openPopup();});});
  }
  const showNational=layer()==='national',showExposure=['exposure','finalExposure'].includes(layer()),pool=showNational?national():stations();
  const container=showNational?L.markerClusterGroup({disableClusteringAtZoom:12,showCoverageOnHover:false,spiderfyOnMaxZoom:true,chunkedLoading:true}):L.layerGroup();
@@ -73,8 +73,19 @@ function renderMap(){
  const current=wind();
  for(const s of pool){if(!hasPosition(s))continue;const state=showExposure&&current?s.exposure[current.time]:null;
   let color=showExposure?(exposureColors[state]||exposureColors.MISSING):showNational?(stationColors[s.type]||'#636363'):(s.analyzed?'#0988b0':s.eligible?'#1c9f72':'#95a8b8');
-  const marker=L.circleMarker([s.lat,s.lon],{radius:s.code===selectedCode?9:5.5,color:s.code===selectedCode?'#152f45':'white',weight:s.code===selectedCode?2.5:1.2,fillColor:color,fillOpacity:.95});
+  const marker=L.circleMarker([s.lat,s.lon],{stationCode:s.code,radius:s.code===selectedCode?9:5.5,color:s.code===selectedCode?'#152f45':'white',weight:s.code===selectedCode?2.5:1.2,fillColor:color,fillOpacity:.95});
   marker.bindTooltip(`${esc(mapStationName(s))} (${esc(s.code)})${showNational?' · '+esc(stationTypes[s.type]||s.type):' · '+num(s.distance)+' km'}${showExposure?' · '+esc(sector(state)):''}`);
+  marker.bindPopup(()=>{
+   const detail=event.stations.find(x=>x.code===s.code),n=lookup.get(s.code)||s;
+   const row=(label,value)=>`<div style="margin-top:5px"><strong>${esc(label)}:</strong> ${esc(value)}</div>`;
+   let content=`<div style="font-size:15px;line-height:1.5;max-height:330px;overflow-y:auto"><strong style="font-size:17px">${esc(stationName(detail||n))}</strong><div>${esc((detail||n).name)} · ${esc(s.code)}</div>`;
+   if(detail){const w=wind();content+=row('Event',event.number+' · '+event.name)+row('Distance',num(detail.distance,2)+' km')+row('Selection',detail.analyzed?'Final selected station':detail.pmSelected?'PM analysis pool':detail.eligible?'Eligible station':'PM completeness not met')+row('Assessment',category(detail.category))+row('PM availability',detail.availability)+row('Paired PM completeness',num(detail.completeness)+'%')+row('Downwind hours',num(detail.downwindHours,0))+row('Hourly wind alignment',sector(w?detail.exposure[w.time]:null));
+    if(w)content+=row('Selected hour',date(w.time)+' KST');
+    if(detail.exclusion)content+=row('Exclusion / selection note',detail.exclusion);
+    if(detail.analyzed)content+=row('Prefire PM2.5 / PM10',num(detail.baseline25)+' / '+num(detail.baseline10)+' µg/m³')+row('Active PM2.5 / PM10 anomaly',num(detail.anomaly25)+' / '+num(detail.anomaly10)+' µg/m³');
+   }else{content+=row('Station type',stationTypes[n.type]||n.type)+row('Province / city',[n.province,n.city].filter(Boolean).join(' · '))+row('Address',n.address)+'<p>National inventory station. Event-specific assessment is not bundled for this station in the selected event.</p>';}
+   return content+'</div>';
+  },{maxWidth:360,minWidth:240,autoPan:true});
   marker.on('click',()=>chooseStation(s.code));container.addLayer(marker);
  }
  points.addLayer(container);
