@@ -20,7 +20,11 @@ from streamlit_folium import st_folium
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="South Korea Wildfire–Air Quality Explorer", page_icon="🔥", layout="wide")
-
+if st.query_params.get("diagnostic") == "1":
+    st.success("Streamlit connected successfully.")
+    st.write("Streamlit version:", st.__version__)
+    st.button("Test button")
+    st.stop()
 
 st.markdown("""<style>
 .block-container{max-width:100%;padding:1.5rem 2rem 3rem}
