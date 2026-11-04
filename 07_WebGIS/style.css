@@ -43,3 +43,28 @@ tr.selected td{background:#fff;border-top:2px solid #17669a;border-bottom:2px so
 @media(min-width:1750px){.primary-grid{grid-template-columns:minmax(0,1fr) 260px}}
 @media(max-width:1100px){.primary-grid{grid-template-columns:minmax(0,1fr) 220px}}
 @media(max-width:850px){.primary-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* GitHub Pages: Streamlit-style research workspace. */
+:root{background:#fff;color:#111827;--muted:#334155;font-size:17px}
+.topbar{background:#fff;color:#111827;border-bottom:1px solid #d6dfe8;padding:16px 24px}
+.brand-icon,.archive-tag{display:none}.brand p{color:#475569}.outline{color:#111827;border-color:#bdcbd9}
+.workspace{grid-template-columns:280px minmax(0,1fr)}
+.sidebar{background:#f0f2f6;padding:24px 18px;position:sticky;top:0;height:100vh;overflow-y:auto;min-height:0}
+#eventList{display:none}.side-note{font-size:14px}.page-heading{margin:8px 0 25px}.page-heading h2{font-size:30px}.page-heading p{margin-top:8px;color:#475569}
+main{padding:24px 28px}.primary-grid{grid-template-columns:minmax(0,4fr) minmax(215px,1fr);align-items:start;gap:20px}
+.sidebar .filters{display:flex;flex-direction:column;padding:22px 0 0;border:0;gap:20px}
+.sidebar .filters>div,.sidebar .filters>div:first-child{width:100%;flex:auto}
+.sidebar label{font-size:17px;font-weight:600;color:#111827}.sidebar select,.sidebar input[type=search]{font-size:16px;padding:11px}
+.sidebar input[type=range]{width:100%;accent-color:#d84b4b}.sidebar output{display:block;margin-top:7px;font-variant-numeric:tabular-nums}
+.filter-note{font-size:13px;color:#475569;margin-top:9px}.sidebar .wind-card{border:0;border-top:1px solid #cbd5e1;border-radius:0;background:transparent;padding:22px 0;margin-top:24px}
+.sidebar .wind-main{display:block}.sidebar .wind-main h3{font-size:18px}.sidebar .wind-main p{font-size:14px}.sidebar .wind-value{font-size:15px;text-align:left;margin-top:12px}
+.sidebar .time-row{flex-wrap:wrap;gap:8px}.sidebar .time-row input{width:calc(100% - 85px)}.sidebar .time-row output{width:100%;text-align:left;font-size:14px}.sidebar #windSources{font-size:13px;overflow-wrap:anywhere}
+#map,.map-wrap{height:850px;min-height:540px}.map-card .card-head{background:#fff;padding:14px}.card{border-radius:6px}.event-details-card{border:0;background:white}.event-details-card .card-head{padding:12px 0;background:white}.event-details-body{padding:16px 0}
+.event-heading{display:block;margin-bottom:20px}.event-heading h2{font-size:20px}.event-heading .eyebrow{font-size:13px}.event-heading .secondary{font-size:16px}.area-stat{text-align:left;margin-top:18px}.area-stat strong{font-size:23px}
+.event-facts{display:block;border:0;background:transparent;margin-bottom:15px}.event-facts div{padding:12px 0;border-bottom:1px solid #e2e8f0}.event-facts span{font-size:15px;color:#111827}.event-facts strong{font-size:16px;line-height:1.5}
+#eventCoordinates{font-size:15px;line-height:1.6}.event-details-card .source-warning{font-size:13px}
+.station-details-below{margin-top:22px}.station-details-below #stationDetails{padding:20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 24px}.station-details-below .detail-row{display:block}.station-details-below .detail-row strong{display:block;text-align:left;margin-top:6px;overflow-wrap:anywhere}.station-details-below .station-name,.station-details-below .station-code,.station-details-below .badge,.station-details-below .small,.station-details-below .source-warning{grid-column:1/-1}.station-details-below .badge{justify-self:start;margin-top:0}.station-details-below h4{grid-column:span 2}.station-details-below .pm-stat{grid-column:span 2}.station-details-below h4{margin:10px 0}
+th{background:#dceeff;color:#000}td{background:white;color:black}.card-head h3{font-size:20px}
+@media(max-width:1100px){.workspace{grid-template-columns:245px minmax(0,1fr)}main{padding:18px}.primary-grid{grid-template-columns:minmax(0,1fr) 210px}.page-heading h2{font-size:26px}}
+@media(max-width:900px){.primary-grid{grid-template-columns:minmax(0,1fr)}.event-details-body{display:grid;grid-template-columns:1fr 1fr;gap:16px}.event-details-card .source-warning{grid-column:1/-1}.station-details-below #stationDetails{grid-template-columns:repeat(2,minmax(0,1fr))}#map,.map-wrap{height:650px}}
+@media(max-width:760px){.workspace{display:block}.sidebar{position:static;height:auto;padding:18px}.side-heading{display:flex}.sidebar .filters{gap:16px}.sidebar .wind-card{margin-top:18px;padding-top:18px}.topbar{padding:14px}.page-heading h2{font-size:24px}main{padding:14px}#map,.map-wrap{height:560px;min-height:0}.event-details-body{display:block}.station-details-below #stationDetails{display:block}.station-details-below .detail-row{margin-bottom:8px}.map-key{font-size:13px}}
